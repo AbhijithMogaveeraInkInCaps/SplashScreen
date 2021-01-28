@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="horizontal"
+    android:id="@+id/rl"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+    <com.abhijith.splashscreen.ui.view.group.MainView
+        android:id="@+id/ss"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
