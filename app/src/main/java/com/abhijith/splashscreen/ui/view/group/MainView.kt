@@ -10,7 +10,7 @@ class MainView : ViewGroup {
     val logoViewGroup: LogoView = LogoView(context)
 
     private val bannerView: BottomBanner = BottomBanner(context)
-    private val whiteScreenViewMain = WhiteScreenViewLTR(context, true)
+    private val whiteScreenViewMain = WhiteScreenViewLTR(context)
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int)
             : super(context, attrs, defStyleAttr, defStyleRes)

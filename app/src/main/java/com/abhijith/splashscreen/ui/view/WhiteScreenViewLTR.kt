@@ -10,10 +10,8 @@ import android.graphics.Paint
 import android.util.Property
 import android.view.View
 
-class WhiteScreenViewLTR constructor(context: Context?, private val rtl: Boolean)
+class WhiteScreenViewLTR constructor(context: Context?,)
     : View(context) {
-
-    var clr: Int = Color.BLACK
 
     val paint = Paint().apply {
         color = Color.WHITE
@@ -24,24 +22,13 @@ class WhiteScreenViewLTR constructor(context: Context?, private val rtl: Boolean
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
         canvas?.let {
-            if (rtl) {
-                it.drawRect(
+            it.drawRect(
                     width.toFloat(),
                     height.toFloat(),
                     0.toFloat() + (width - changingX),
                     0.toFloat(),
                     paint
                 )
-            } else {
-                /*second banner animation*/
-                it.drawRect(
-                    0.toFloat(),
-                    0.toFloat(),
-                    width.toFloat() - changingX,
-                    height.toFloat(),
-                    paint
-                )
-            }
         }
     }
 
