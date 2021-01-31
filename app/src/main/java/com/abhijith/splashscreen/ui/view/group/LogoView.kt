@@ -35,7 +35,12 @@ class LogoView : ViewGroup {
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
             flag = true
-            logoViewGroup.layout((0 + m1) - i, (0) - i, (width - m1) + i, (height - (m1 * 2)) + i)
+            logoViewGroup.layout(
+                (0 + m1+60) - i,
+                (0)+120 - i,
+                (width - m1-60) + i,
+                (height - (m1 * 2)) + i
+            )
             addView(logoViewGroup)
     }
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
@@ -58,10 +63,16 @@ class LogoView : ViewGroup {
                 addUpdateListener {
                     invalidate()
                     logoViewGroup.layout(
-                        (0 + m1) - i,
-                        (0) - i,
-                        (width - m1) + i,
+//                        (0 + m1) - i,
+//                        (0) - i,
+//                        (width - m1) + i,
+//                        (height - (m1 * 2)) + i
+
+                        (0 + m1+60) - i,
+                        (0)+120 - i,
+                        (width - m1-60) + i,
                         (height - (m1 * 2)) + i
+
                     )
                 }
                 setProperty(object : Property<LogoView, Float>(Float::class.java, "Percent") {

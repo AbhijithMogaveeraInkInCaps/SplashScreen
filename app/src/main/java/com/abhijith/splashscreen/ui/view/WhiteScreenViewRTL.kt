@@ -7,13 +7,11 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
-import android.util.AttributeSet
+import android.util.Log
 import android.util.Property
 import android.view.View
 
-class WhiteScreenView constructor(context: Context?, val rtl: Boolean) : View(context) {
-
-    var clr: Int = Color.BLACK
+class WhiteScreenViewRTL(context: Context?) : View(context) {
 
     val paint = Paint().apply {
         color = Color.WHITE
@@ -23,59 +21,67 @@ class WhiteScreenView constructor(context: Context?, val rtl: Boolean) : View(co
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
+        Log.e("ChangeInX",(width - changingX).toString())
         canvas?.let {
-            if (rtl) {
-                it.drawRect(
-                    0.toFloat() + (width - changingX),
-                    0.toFloat(),
-                    width.toFloat(),
-                    height.toFloat(),
-                    paint
-                )
-            } else {
-                it.drawRect(
-                    0.toFloat(),
-                    0.toFloat(),
-                    width.toFloat() - changingX,
-                    height.toFloat(),
-                    paint
-                )
-            }
+            it.drawRect(
+                width.toFloat()-changingX,
+                0.toFloat(),
+                width.toFloat(),
+                height.toFloat(),
+                paint
+            )
         }
     }
 
 
+    var isAnimationStarted:Boolean = false
+    fun beginAnimation(x: Int, onFinish: () -> Unit,onStart:()->Unit) {
 
-    fun beginAnimation(x: Int, onFinish: () -> Unit) {
         changingX = x
+
         val l: Long = 2000
+
         objectAnimator.apply {
-            target = this@WhiteScreenView
+
+            target = this@WhiteScreenViewRTL
+
             addUpdateListener {
                 invalidate()
             }
-            setProperty(object : Property<WhiteScreenView, Float>(Float::class.java, "Percent") {
-                override fun get(p0: WhiteScreenView?): Float {
-                    return changingX.toFloat()
 
+            setProperty(object : Property<WhiteScreenViewRTL, Float>(Float::class.java, "Percent") {
+                override fun get(p0: WhiteScreenViewRTL?): Float {
+                    return changingX.toFloat()
                 }
 
-                override fun set(rv: WhiteScreenView?, value: Float?) {
+                override fun set(rv: WhiteScreenViewRTL?, value: Float?) {
                     value?.let {
                         changingX = value.toInt()
                     }
                 }
             })
+
             removeAllListeners()
-            setFloatValues(changingX.toFloat(), 0.toFloat())
+
+            setFloatValues(0.toFloat(),changingX.toFloat())
+
             duration = l
+
             addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator?) {
                     onFinish()
                     removeAllListeners()
                 }
+                override fun onAnimationStart(animation: Animator?) {
+                    super.onAnimationStart(animation)
+                    onStart()
+                }
             })
+
             start()
+
         }
+
     }
+
 }

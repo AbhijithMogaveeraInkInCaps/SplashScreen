@@ -6,6 +6,8 @@ import android.graphics.Color
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.OnLifecycleEvent
 
 class RingView : View {
     var clr: Int = Color.BLACK
@@ -37,5 +39,8 @@ class RingView : View {
         }
 
     }
+
+
+
 
 }
