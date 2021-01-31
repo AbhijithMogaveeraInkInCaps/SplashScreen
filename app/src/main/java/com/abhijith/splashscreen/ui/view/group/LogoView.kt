@@ -26,9 +26,6 @@ class LogoView : ViewGroup {
     constructor(context: Context?) : super(context)
 
     var i = 100
-    override fun draw(canvas: Canvas?) {
-        super.draw(canvas)
-    }
 
     val m1 get() = width / 3
     var flag = false
@@ -48,7 +45,7 @@ class LogoView : ViewGroup {
     }
 
     fun beginAnimation(onFinish: () -> Unit) {
-        val l: Long = 4000
+        val l: Long = 1800
         //
         val translationY: ObjectAnimator = ObjectAnimator.ofFloat(
             logoViewGroup,

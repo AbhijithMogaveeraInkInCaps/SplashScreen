@@ -25,7 +25,6 @@ class MainView : ViewGroup {
             : super(context) {
     }
 
-    val m1 get() = width / 3
     override fun onLayout(p0: Boolean, p1: Int, p2: Int, p3: Int, p4: Int) {
         removeAllViews()
         logoViewGroup.layout(0, 0, width, height)
