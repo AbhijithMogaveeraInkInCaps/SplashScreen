@@ -5,12 +5,11 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import com.abhijith.splashscreen.ui.view.WhiteScreenViewLTR
 
-class MainView : ViewGroup {
+class SplashScreen : ViewGroup {
 
-    val logoViewGroup: LogoView = LogoView(context)
-
+    private val logoView: LogoView = LogoView(context)
     private val bannerView: BottomBanner = BottomBanner(context)
-    private val whiteScreenViewMain = WhiteScreenViewLTR(context)
+    private val animationWhiteScreen = WhiteScreenViewLTR(context)
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int)
             : super(context, attrs, defStyleAttr, defStyleRes)
@@ -27,18 +26,17 @@ class MainView : ViewGroup {
 
     override fun onLayout(p0: Boolean, p1: Int, p2: Int, p3: Int, p4: Int) {
         removeAllViews()
-        logoViewGroup.layout(0, 0, width, height)
+        logoView.layout(0, 0, width, height)
         bannerView.layout(0,height/2,width,(height/2)+200)
-        whiteScreenViewMain.layout(0, 0, width, height)
-        addView(logoViewGroup)
+        animationWhiteScreen.layout(0, 0, width, height)
+        addView(logoView)
         addView(bannerView)
-        addView(whiteScreenViewMain.also {
+        addView(animationWhiteScreen.also {
             it.beginAnimation(2000L, {
             },{
                 bannerView.beginAnimation {
                     bannerView.visibility = INVISIBLE
-                    logoViewGroup
-                    logoViewGroup.beginAnimation(1800, {
+                    logoView.beginAnimation(1800, {
                     },{
                         callBack()
                     })

@@ -9,7 +9,7 @@
     android:gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
-    <com.abhijith.splashscreen.ui.view.group.MainView
+    <com.abhijith.splashscreen.ui.view.group.SplashScreen
         android:id="@+id/ss"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

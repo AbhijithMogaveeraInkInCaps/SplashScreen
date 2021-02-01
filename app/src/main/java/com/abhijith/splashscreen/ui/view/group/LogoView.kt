@@ -4,14 +4,12 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
 import android.content.Context
-import android.graphics.Canvas
 import android.util.AttributeSet
 import android.util.Property
 import android.view.ViewGroup
-import com.abhijith.splashscreen.ui.view.logMsg
 
 class LogoView : ViewGroup {
-    private val logoViewGroup: LogoViewGroup = LogoViewGroup(context)
+    private val logoViewGroup: Logo = Logo(context)
     private val objectAnimator: ObjectAnimator = ObjectAnimator()
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int)
@@ -81,7 +79,6 @@ class LogoView : ViewGroup {
                     }
 
                     override fun set(rv: LogoView?, value: Float?) {
-//                    super.set(rv, value)
                         value?.let {
                             i = value.toInt()
                             this@LogoView.invalidate()
@@ -106,9 +103,6 @@ class LogoView : ViewGroup {
             }
 
         }
-
-        //
-
     }
 
 }

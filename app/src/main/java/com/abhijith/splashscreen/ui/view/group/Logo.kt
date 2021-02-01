@@ -7,7 +7,7 @@ import android.util.AttributeSet
 import android.view.ViewGroup
 import com.abhijith.splashscreen.ui.view.RingView
 
-class LogoViewGroup:ViewGroup {
+class Logo:ViewGroup {
     var circleOne:RingView=RingView(context, Color.BLACK)
     var circleTwo:RingView=RingView(context, Color.WHITE)
     var circleThree:RingView=RingView(context, Color.BLACK)
@@ -29,6 +29,7 @@ class LogoViewGroup:ViewGroup {
     }
 
     val gap get() = width/6
+    
     override fun onLayout(p0: Boolean, p1: Int, p2: Int, p3: Int, p4: Int) {
         removeAllViews()
         circleOne.layout(0,0,width, height)
