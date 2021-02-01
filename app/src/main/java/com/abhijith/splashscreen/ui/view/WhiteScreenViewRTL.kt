@@ -13,10 +13,10 @@ import android.view.View
 
 class WhiteScreenViewRTL(context: Context?) : View(context) {
 
-    val paint = Paint().apply {
+    private val paint = Paint().apply {
         color = Color.WHITE
     }
-    val objectAnimator: ObjectAnimator = ObjectAnimator()
+    private val objectAnimator: ObjectAnimator = ObjectAnimator()
     var changingX: Int = 0
 
     override fun onDraw(canvas: Canvas?) {
@@ -35,12 +35,20 @@ class WhiteScreenViewRTL(context: Context?) : View(context) {
 
 
     var isAnimationStarted:Boolean = false
-    fun beginAnimation(x: Int, onFinish: () -> Unit,onStart:()->Unit) {
 
-        changingX = x
 
-        val l: Long = 2000
-
+    /**
+     * @param animationDuration duration in which animation should complete
+     * @param onStart called when the animation starts
+     * @param onFinish called when animation ends
+    * */
+    fun beginAnimation(
+        animationDuration:Long,
+        onStart:()->Unit,
+        onFinish: () -> Unit
+    ) {
+        changingX = width
+        val l: Long = animationDuration
         objectAnimator.apply {
 
             target = this@WhiteScreenViewRTL

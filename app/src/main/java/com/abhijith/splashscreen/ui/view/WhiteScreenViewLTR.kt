@@ -33,10 +33,18 @@ class WhiteScreenViewLTR constructor(context: Context?,)
     }
 
 
-
-    fun beginAnimation(x: Int, onFinish: () -> Unit) {
-        changingX = x
-        val l: Long = 2000
+    /**
+     * @param animationDuration duration in which animation should complete
+     * @param onStart called when the animation starts
+     * @param onFinish called when animation ends
+     * */
+    fun beginAnimation(
+        animationDuration:Long,
+        onStart: () -> Unit,
+        onFinish: () -> Unit,
+    ) {
+        changingX = width
+        val l: Long = animationDuration
         objectAnimator.apply {
             target = this@WhiteScreenViewLTR
             addUpdateListener {
@@ -62,6 +70,10 @@ class WhiteScreenViewLTR constructor(context: Context?,)
                     removeAllListeners()
                 }
 
+                override fun onAnimationStart(animation: Animator?) {
+                    super.onAnimationStart(animation)
+                    onStart()
+                }
             })
             start()
         }

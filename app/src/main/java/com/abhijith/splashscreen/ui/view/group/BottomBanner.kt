@@ -9,13 +9,18 @@ import android.view.ViewGroup
 import android.widget.TextView
 import com.abhijith.splashscreen.ui.view.WhiteScreenViewRTL
 
+/**
+ * This view group contains all the text which bellow the logo like app name an tag line
+* */
 class BottomBanner : ViewGroup {
+
     val mainText: TextView = TextView(context).apply {
         text = "Follow"
         gravity = Gravity.CENTER
         setTypeface(typeface, Typeface.BOLD)
         setTextColor(Color.BLACK)
     }
+
     val subText: TextView = TextView(context).apply {
         text = "Follow ur passion"
         gravity = Gravity.CENTER
@@ -43,15 +48,21 @@ class BottomBanner : ViewGroup {
         addView(whiteScreenViewRTL)
     }
 
+    /**
+     * Edit text view position here
+    * */
     override fun onLayout(p0: Boolean, p1: Int, p2: Int, p3: Int, p4: Int) {
         mainText.layout(0, 0, width, height)
         subText.layout(0, 0 + 100, width, height)
         whiteScreenViewRTL.layout(0, 0, width, height)
     }
 
+
     fun beginAnimation(onFinish: () -> Unit) {
-        whiteScreenViewRTL.beginAnimation(width, {
+        whiteScreenViewRTL.beginAnimation(2000, {
+
+        }, {
             onFinish()
-        }, {})
+        })
     }
 }

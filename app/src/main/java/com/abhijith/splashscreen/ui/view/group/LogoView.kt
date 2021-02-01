@@ -11,8 +11,8 @@ import android.view.ViewGroup
 import com.abhijith.splashscreen.ui.view.logMsg
 
 class LogoView : ViewGroup {
-    val logoViewGroup: LogoViewGroup = LogoViewGroup(context)
-    val objectAnimator: ObjectAnimator = ObjectAnimator()
+    private val logoViewGroup: LogoViewGroup = LogoViewGroup(context)
+    private val objectAnimator: ObjectAnimator = ObjectAnimator()
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int)
             : super(context, attrs, defStyleAttr, defStyleRes)
@@ -43,10 +43,17 @@ class LogoView : ViewGroup {
     override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
 
     }
-
-    fun beginAnimation(onFinish: () -> Unit) {
-        val l: Long = 1800
-        //
+    /**
+     * @param animationDuration duration in which animation should complete
+     * @param onStart called when the animation starts
+     * @param onFinish called when animation ends
+     * */
+    fun beginAnimation(
+        animationDuration:Long,
+        onStart: () -> Unit,
+        onFinish: () -> Unit,
+    ) {
+        val l: Long = animationDuration
         val translationY: ObjectAnimator = ObjectAnimator.ofFloat(
             logoViewGroup,
             "translationY",
@@ -60,11 +67,6 @@ class LogoView : ViewGroup {
                 addUpdateListener {
                     invalidate()
                     logoViewGroup.layout(
-//                        (0 + m1) - i,
-//                        (0) - i,
-//                        (width - m1) + i,
-//                        (height - (m1 * 2)) + i
-
                         (0 + m1+60) - i,
                         (0)+120 - i,
                         (width - m1-60) + i,
@@ -93,6 +95,11 @@ class LogoView : ViewGroup {
                     override fun onAnimationEnd(animation: Animator?) {
                         onFinish()
                         removeAllListeners()
+                    }
+
+                    override fun onAnimationStart(animation: Animator?) {
+                        super.onAnimationStart(animation)
+                        onStart()
                     }
                 })
                 start()

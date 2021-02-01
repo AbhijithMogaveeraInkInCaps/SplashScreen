@@ -33,15 +33,17 @@ class MainView : ViewGroup {
         addView(logoViewGroup)
         addView(bannerView)
         addView(whiteScreenViewMain.also {
-            it.beginAnimation(width) {
+            it.beginAnimation(2000L, {
+            },{
                 bannerView.beginAnimation {
                     bannerView.visibility = INVISIBLE
                     logoViewGroup
-                    logoViewGroup.beginAnimation() {
-                            callBack()
-                    }
+                    logoViewGroup.beginAnimation(1800, {
+                    },{
+                        callBack()
+                    })
                 }
-            }
+            })
         })
     }
     var callBack: () -> Unit = {}
