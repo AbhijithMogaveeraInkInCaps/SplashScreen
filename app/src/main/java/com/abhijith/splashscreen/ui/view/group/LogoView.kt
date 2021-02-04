@@ -9,7 +9,9 @@ import android.util.Property
 import android.view.ViewGroup
 
 class LogoView : ViewGroup {
+
     private val logoViewGroup: Logo = Logo(context)
+
     private val objectAnimator: ObjectAnimator = ObjectAnimator()
 
     constructor(context: Context?, attrs: AttributeSet?, defStyleAttr: Int, defStyleRes: Int)

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SplashScreen</string>
+    <string name="folow">Folow</string>
+    <string name="follow_your_passsion">Follow your passsion</string>
 </resources>

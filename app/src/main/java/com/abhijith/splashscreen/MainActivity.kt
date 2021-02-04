@@ -11,12 +11,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 //        finish()
-        findViewById<SplashScreen>(R.id.ss).apply {
-            setOnFinishCallBack {
-                startActivity(Intent(context, IntroActivity::class.java))
+//        findViewById<SplashScreen>(R.id.ss).apply {
+//            setOnFinishCallBack {
+                startActivity(Intent(this, IntroActivity::class.java))
                 finish()
-            }
-        }
+//            }
+//        }
 
     }
 }
